@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  quizmaster.telegrambot:
+    image: ${DOCKER_REGISTRY-}quizmastertelegrambot
+    build:
+      context: .
+      dockerfile: src/QuizMaster.TelegramBot/Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    
+  quizmaster.database:
+    image: postgres:latest
+    container_name: quizmaster.database
+    environment:
+      - POSTGRES_DB=quizmasterdb
+      - POSTGRES_USER=umidjon
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - ./.containers/quizmaster-db:/var/lib/posgresql/data    
+    ports:
+      - 5432:5432
