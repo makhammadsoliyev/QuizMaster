@@ -9,7 +9,15 @@ services:
     ports:
       - "5000:5000"
       - "5001:5001"
-    
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_USER=umidjon
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=quizmasterdb
+    depends_on:
+      - quizmaster.database
+
   quizmaster.database:
     image: postgres:latest
     container_name: quizmaster.database
@@ -18,8 +26,11 @@ services:
       - POSTGRES_USER=umidjon
       - POSTGRES_PASSWORD=root
     volumes:
-      - ./.containers/quizmaster-db:/var/lib/posgresql/data    
+      - db-data:/var/lib/postgresql/data  
     ports:
       - 5432:5432
+
+volumes:
+  db-data:
 
 
