@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore the migrations folder
+QuizMaster.DataAccess/Migrations/
+/src/QuizMaster.DataAccess/Migrations
