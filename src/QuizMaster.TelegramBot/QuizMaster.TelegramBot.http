@@ -1,0 +1,6 @@
+@QuizMaster.TelegramBot_HostAddress = http://localhost:5051
+
+GET {{QuizMaster.TelegramBot_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

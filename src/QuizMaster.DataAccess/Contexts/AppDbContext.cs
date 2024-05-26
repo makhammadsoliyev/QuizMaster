@@ -5,11 +5,6 @@ namespace QuizMaster.DataAccess.Contexts;
 
 public class AppDbContext : DbContext
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseNpgsql("Server=localhost; Database=QuizMasterDb; Port=5432; User ID=postgres; Password=root");
-    }
-
     public DbSet<User> Users { get; set; }
     public DbSet<Quiz> Quizzes { get; set; }
     public DbSet<Question> Questions { get; set; }
@@ -19,6 +14,8 @@ public class AppDbContext : DbContext
     public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
     public DbSet<QuestionOption> QuestionOptions { get; set; }
     public DbSet<QuizApplication> QuizApplications { get; set; }
+
+    public AppDbContext(DbContextOptions options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

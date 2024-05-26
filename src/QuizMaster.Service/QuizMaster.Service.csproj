@@ -6,4 +6,13 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuizMaster.DataAccess\QuizMaster.DataAccess.csproj" />
+    <ProjectReference Include="..\QuizMaster.Domain\QuizMaster.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

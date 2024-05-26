@@ -5,9 +5,16 @@ using System.Linq.Expressions;
 
 namespace QuizMaster.DataAccess.Repositories;
 
-public class Repository<TEntity>(AppDbContext context) : IRepository<TEntity> where TEntity : Auditable
+public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditable
 {
-    private readonly DbSet<TEntity> set = context.Set<TEntity>();
+    private readonly DbSet<TEntity> set;
+    private readonly AppDbContext context;
+
+    public Repository(AppDbContext context)
+    {
+        this.context = context;
+        this.set = context.Set<TEntity>();
+    }
 
     public async Task<TEntity> InsertAsync(TEntity entity)
         => (await set.AddAsync(entity)).Entity;
