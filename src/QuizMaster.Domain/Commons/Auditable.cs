@@ -9,4 +9,5 @@ public abstract class Auditable
     public long? UpdatedById { get; set; }
     public DateTime? DeletedAt { get; set; }
     public long? DeletedById { get; set; }
+    public bool IsDeleted { get; set; }
 }
