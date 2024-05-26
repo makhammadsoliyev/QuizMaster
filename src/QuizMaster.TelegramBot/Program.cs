@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using QuizMaster.DataAccess.Contexts;
+using QuizMaster.DataAccess.Repositories;
+using QuizMaster.Service.Mappers;
+using QuizMaster.Service.Services.Users;
 using QuizMaster.TelegramBot.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options
     => options.UseNpgsql(builder.Configuration.GetConnectionString("DockerConnection")));
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

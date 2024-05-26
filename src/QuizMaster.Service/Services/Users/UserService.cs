@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using QuizMaster.DataAccess.Repositories;
 using QuizMaster.Domain.Entities;
 using QuizMaster.Service.DTOs.Users;
@@ -36,8 +37,9 @@ public class UserService : IUserService
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<UserResultDto>> RetrieveAllAsync()
+    public async Task<IEnumerable<UserResultDto>> RetrieveAllAsync()
     {
-        throw new NotImplementedException();
+        var result = await repository.SelectAll().ToListAsync();
+        return mapper.Map<IEnumerable<UserResultDto>>(result);
     }
 }
