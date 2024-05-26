@@ -8,4 +8,5 @@ public class Question : Auditable
     public string MediaUrl { get; set; }
     public long CategoryId { get; set; }
     public Category Category { get; set; }
+    public IEnumerable<QuestionOption> Options { get; set; }
 }
