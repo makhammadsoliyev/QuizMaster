@@ -18,7 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IHostedService, WebhookConfiguration>();
+builder.Services.AddHostedService<WebhookConfiguration>();
 builder.Services.AddHttpClient("tgwebhook")
     .AddTypedClient<ITelegramBotClient>(httpClient 
         => new TelegramBotClient(builder.Configuration.GetSection("BotConfiguration").Get<BotConfiguration>().Token, httpClient));
@@ -27,7 +27,6 @@ builder.Services.AddScoped<HandleUpdateService>();
 builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
 
 var app = builder.Build();
 
