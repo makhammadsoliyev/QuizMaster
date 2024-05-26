@@ -19,6 +19,7 @@ public class UserService : IUserService
     {
         var mappedUser = mapper.Map<User>(createDto);
         var createdUser = await repository.InsertAsync(mappedUser);
+        await repository.SaveAsync();
         return mapper.Map<UserResultDto>(createdUser);
     }
 

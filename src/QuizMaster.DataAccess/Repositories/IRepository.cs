@@ -14,4 +14,5 @@ public interface IRepository<TEntity> where TEntity : Auditable
     IQueryable<TEntity> SelectAll(Expression<Func<TEntity, bool>> expression = null,
                                   string[] includes = null,
                                   bool isTracking = true);
+    Task<bool> SaveAsync();
 }
